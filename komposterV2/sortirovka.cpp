@@ -49,5 +49,6 @@ int main() {
 	for (int k = 0; k < size; k++) {
 		cout << array_to_sort[k]<< "    ";
 	}
+	delete[] array_to_sort;
 	return 0;
 }
