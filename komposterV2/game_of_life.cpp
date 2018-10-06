@@ -40,7 +40,7 @@ int count_neighbours(int x_position, int y_position, int** current_state) {
 	for (int i = -1; i < 2; i++) {
 		for (int j = -1; j < 2; j++) {
 			if (check_borders(x_position, i) && check_borders(y_position, j)) {
-				if !(i == 0 && j == 0) {
+				if (!(i == 0 && j == 0)) {
 					neighbours += current_state[x_position + i][y_position + j];
 				}
 			}
