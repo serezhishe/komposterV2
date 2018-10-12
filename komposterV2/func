@@ -1,0 +1,28 @@
+void move_throw_zeros(int** field, int x1,int y1, int huy) {
+	int tmp1 = fabs((GLOBAL_LENGTH - 1)*x1 - (GLOBAL_LENGTH - 1)) / 2 + x1*huy;
+	int tmp2 = fabs((GLOBAL_LENGTH - 1)*y1 - (GLOBAL_LENGTH - 1)) / 2 + y1*(1 - huy);
+	for (int i = tmp1; check_borders(i, -x1*huy) && check_borders(i, 0); i+=x1) {
+		for (int j = tmp2; check_borders(j, -y1*(1-huy)) && check_borders(j, 0); j+=y1) {
+			if (field[i - x1*huy][j - y1*(1-huy)] == 0) {
+				field[i - x1*huy][j - y1*(1-huy)] = field[i][j];
+				field[i][j] = 0;
+				if (huy) {
+					for (int k = i; check_borders(k, x1) && check_borders(k,0); k-=x1) {
+						if (field[i - x1][k] == 0) {
+							field[i - x1][k] = field[i][k];
+							field[i][k] = 0;
+						}
+					}
+				}
+				else {
+					for (int k = j; check_borders(k, -y1) && check_borders(k, 0); k -= y1) {
+						if (field[i][k - y1] == 0) {
+							field[i][k - y1] = field[i][k];
+							field[i][k] = 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
